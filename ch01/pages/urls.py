@@ -2,8 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("v1/", views.v1, name="v1"),
-    path("v2/", views.v2, name="v2"),
-
+    path("<int:idz>", views.index, name="index"),
+    #looks for the integer in the path and calls it IDZ
 ]
