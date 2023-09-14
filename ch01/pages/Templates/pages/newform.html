@@ -1,0 +1,16 @@
+{% extends "pages/template.html" %} 
+
+{% block title %} 
+Fill Information 
+{% endblock %}
+{% block content %}
+<h1>Create New List</h1>
+<form method="post" action="/create/">
+  <!-- The HTML for the form is created by Django -->
+  {{form}}
+  <!-- Just a buttom to submit the data in FORM -->
+  <button type="submit" name="save">
+    Create New
+  </button>
+</form>
+{% endblock %}
