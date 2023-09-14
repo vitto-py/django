@@ -1,0 +1,14 @@
+{% extends "pages/template.html" %} {% block title %} View List {% endblock %}
+{% block content %}
+<h1>{{ls.name}}</h1>
+<ul>
+  <!-- FOR CYCLE -->
+  {%for x in ls.item_set.all %}
+  <!-- IF -->
+  {% if x.completed == False %}
+  <li>{{x.text}} INCOMPLETED</li>
+  {% else %}
+  <li>{{x.text}} COMPLETED</li>
+  {% endif %} {% endfor %}
+</ul>
+{% endblock %}

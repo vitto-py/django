@@ -9,11 +9,8 @@ from .models import ToDoList, Item
 def index(response, idz):
     # page # = one list
     ls = ToDoList.objects.get(id=idz)
-    # get erste item inside list ls
-    item = ls.item_set.get(id=1)
-    return HttpResponse(
-        "<h1>%s</h1><br></br><p>%s</p>" % (ls.name, item.text))
+    return render(response, "pages/list.html", {"ls": ls})
 
 
 def home(response):
-    pass
+    return render(response, "pages/main.html", {})
