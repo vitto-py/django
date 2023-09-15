@@ -18,6 +18,7 @@ def home(response):
 
 
 def create(response):
+    # post is fired when you hit submit 
     if response.method == "POST":
         resp = createNew(response.POST)  # get the data from the SUBMIT
         if resp.is_valid():
@@ -27,5 +28,6 @@ def create(response):
             t.save()  # like in the shell
 
         return HttpResponseRedirect("/%i" % t.id)
-
+    else:
+        form = createNew()
     return render(response, "pages/newform.html", {"form": form})
