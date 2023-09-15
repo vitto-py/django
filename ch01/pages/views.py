@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from .models import ToDoList, Item
 from .forms import createNew
 
@@ -18,5 +18,14 @@ def home(response):
 
 
 def create(response):
-    form = createNew()
+    if response.method == "POST":
+        resp = createNew(response.POST)  # get the data from the SUBMIT
+        if resp.is_valid():
+            # unencript and give me the field name of the form
+            n = resp.cleaned_data["name"]
+            t = ToDoList(name=n)
+            t.save()  # like in the shell
+
+        return HttpResponseRedirect("/%i" % t.id)
+
     return render(response, "pages/newform.html", {"form": form})
